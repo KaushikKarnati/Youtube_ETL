@@ -48,3 +48,10 @@ This guide explains how to generate an API key for the YouTube Data API v3 using
 4. Save changes.
 
 ---
+
+## SAVE THE WORLD
+
+1. Be KIND, DO GOOD WORK
+2. DOOOOOOO SOME WORK!!!! 
+3. WTF ARE YOU READING?!
+4. OKAY, BYE!
