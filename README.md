@@ -41,6 +41,7 @@ This project uses industry-standard tools. Here is what they do:
     -   *Concept*: **DAG (Directed Acyclic Graph)** - A collection of tasks organized in a specific order.
 -   **Docker**: The "Container". It packages the software so it runs exactly the same on my machine and yours.
 -   **PostgreSQL**: The "Warehouse". A powerful database where we store the structured data.
+-   **Metabase**: The "Dashboard". A tool to visualize the data with charts and graphs.
 -   **YouTube Data API**: The "Source". Google's official way for developers to get YouTube data.
 -   **ETL (Extract, Transform, Load)**: The core process:
     1.  **Extract**: Get data from YouTube.
@@ -106,3 +107,16 @@ Open your browser to `http://localhost:8080`.
 -   **Password**: airflow
 
 You will see your DAGs! Toggle them to "On" to start the schedule.
+
+### Step 5: Visualize Data (Metabase)
+1.  Open `http://localhost:3000`.
+2.  Click **"Let's get started"**.
+3.  Connect to your database:
+    *   **Database Type**: PostgreSQL
+    *   **Name**: YouTube Data
+    *   **Host**: `postgres`
+    *   **Port**: `5432`
+    *   **Database Name**: `youtube_data` (or check your `.env` for `ELT_DATABASE_NAME`)
+    *   **Username**: `airflow`
+    *   **Password**: `airflow`
+4.  Click **Next** and start exploring!
