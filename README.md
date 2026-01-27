@@ -120,3 +120,36 @@ You will see your DAGs! Toggle them to "On" to start the schedule.
     *   **Username**: `airflow`
     *   **Password**: `airflow`
 4.  Click **Next** and start exploring!
+
+### Step 6: Advanced Analytics (SQL)
+Use these SQL queries in Metabase to unlock deeper insights:
+
+**1. Engagement Rate (Are people interacting?)**
+```sql
+SELECT
+    "Upload_Date",
+    "Video_Title",
+    (("Likes_Count" + "Comments_Count") * 100.0 / NULLIF("Video_Views", 0)) AS engagement_rate_pct
+FROM core.yt_data
+ORDER BY "Upload_Date" ASC;
+```
+
+**2. Love Ratio (Likes vs Views)**
+```sql
+SELECT
+    "Video_Title",
+    ("Likes_Count" * 100.0 / NULLIF("Video_Views", 0)) AS like_ratio_pct
+FROM core.yt_data
+ORDER BY like_ratio_pct DESC
+LIMIT 20;
+```
+
+**3. Views vs Duration (Do shorter videos win?)**
+```sql
+SELECT
+    "Video_Title",
+    "Video_Views",
+    (EXTRACT(EPOCH FROM "Duration") / 60) AS duration_minutes
+FROM core.yt_data
+WHERE "Video_Views" > 0;
+```
