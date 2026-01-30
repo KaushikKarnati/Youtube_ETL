@@ -153,3 +153,42 @@ SELECT
 FROM core.yt_data
 WHERE "Video_Views" > 0;
 ```
+
+---
+
+## 📋 How to Replicate This Project
+
+If you want to build a similar data engineering pipeline for a different use case, follow this guide.
+
+### 1. Recommended Folder Structure
+
+```bash
+New_Project/
+├── dags/                       # [CORE LOGIC] Airflow DAGs
+│   ├── api/                    #    - API interaction code (Extract)
+│   ├── datawarehouse/          #    - Database interaction code (Load)
+│   └── main.py                 #    - Airflow DAG definition file
+├── data/                       # [STORAGE] Staging area for raw files (JSON/CSV)
+├── docker/                     # [CONFIG] Docker-specific configs
+├── logs/                       # [LOGS] Airflow logs
+├── docker-compose.yaml         # [INFRA] Airflow, Postgres, Metabase services
+├── dockerfile                  # [ENV] Custom Airflow image definition
+├── requirements.txt            # [DEPS] Python libraries
+└── .env                        # [SECRETS] Environment variables
+```
+
+### 2. Step-by-Step Implementation
+
+1.  **Initialize**: Create the folders (`dags/api`, `dags/datawarehouse`, `data`, `docker`, `logs`).
+2.  **Dependencies**: Add your required Python libraries to `requirements.txt`.
+3.  **Docker Image**: Use the `dockerfile` provided in this repo to build a custom Airflow image that includes your requirements.
+4.  **Infrastructure**: Copy `docker-compose.yaml`. It sets up Postgres (Warehouse), Redis (Broker), Airflow, and Metabase.
+5.  **Develop Logic**:
+    *   **Extract**: Write scripts in `dags/api/` to fetch data.
+    *   **Load**: Write scripts in `dags/datawarehouse/` to save data to Postgres.
+    *   **Orchestrate**: Define your DAGs in `dags/main.py`.
+
+### 3. Best Practices
+*   **Staging**: Always save raw data to `data/` before processing.
+*   **Idempotency**: Ensure scripts can run multiple times without duplicating data.
+*   **Separation**: Keep Extraction logic separate from Loading logic.
